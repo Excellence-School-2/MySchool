@@ -30,7 +30,9 @@
         <h1>All  Classes</h1>
     </div>
 
+    <div class= "container-md">
     <table class="table">
+        
         <thead>
           <tr>
             <th scope="col">Class Name</th>
@@ -40,10 +42,11 @@
         <tbody>
           <tr th:each="schoolClass: ${schoolClasses}" >
             <td th:text="${schoolClass.section}"></td>
-            <td th:taxt="${schoolClass.getStudentNumber()}"></td>
+            <td th:text="${schoolClass.getStudentNumber()}"></td>
           </tr>
         </tbody>
       </table>
+    </div>
 
 
 
