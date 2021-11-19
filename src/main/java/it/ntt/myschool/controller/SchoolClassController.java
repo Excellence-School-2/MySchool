@@ -21,5 +21,7 @@ public class SchoolClassController {
         model.addAttribute("schoolClasses", schoolClassRepository.findAll());
         return "schoolclass";
     }
+
+    
     
 }
