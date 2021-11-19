@@ -41,7 +41,10 @@
         </thead>
         <tbody>
           <tr th:each="schoolClass: ${schoolClasses}" >
-            <td th:text="${schoolClass.section}"></td>
+            <td>
+                <a th:text="${schoolClass.section}" 
+                th:href="@{/students/{section}(section=${schoolClass.section})}"></a>
+            </td>
             <td th:text="${schoolClass.getStudentNumber()}"></td>
           </tr>
         </tbody>
