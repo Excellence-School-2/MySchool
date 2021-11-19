@@ -5,15 +5,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.ntt.myschool.entity.Student;
+import it.ntt.myschool.repository.SchoolClassRepository;
 import it.ntt.myschool.repository.StudentRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class StudentController {
     private StudentRepository studentRepository;
+    private SchoolClassRepository schoolClassRepository;
     
 
-    public StudentController(StudentRepository studentRepository){
+    public StudentController(StudentRepository studentRepository, SchoolClassRepository schoolClassRepository){
         this.studentRepository=studentRepository;
+        this.schoolClassRepository=schoolClassRepository;
         
     }
     
@@ -30,6 +37,20 @@ public class StudentController {
         //per far cambiare il titolo della pagina  coerentemente alla pagina che clicco lato FE
         model.addAttribute("title", section +" "+ "Student List");
         return "studentList";
-
     }
+
+
+    @GetMapping("/addStudent")
+    public String getNewStudentForm(Model model){
+        model.addAttribute("schoolClasses", schoolClassRepository.findAll());
+       return "addStudent";
+    }
+
+    @PostMapping("/addStudent")
+    public String addStudent(Student student) {
+    //lo prende dal form della pag AddStudent.html <input name="name" type="text" class="form-control" aria-describedby="namelHelp">
+        studentRepository.save(student);
+        return "redirect:/students";
+    }
+    
 }
