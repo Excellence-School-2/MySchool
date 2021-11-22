@@ -28,7 +28,7 @@
       </nav>
 
 
-
+      <div class= "container-md">
       <form action="/addStudent" method="post">
         <div class="mb-3">
           <label for="inputName" class="form-label">Name</label>
@@ -40,27 +40,27 @@
         </div>
         <div class="mb-3">
             <label for="inputAge" class="form-label">Age</label>
-            <input name = "age" type="text" class="form-control">
+            <input name = "age" type="number" class="form-control">
           </div>
-
         
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Section</button>
-            <ul class="dropdown-menu dropdown-menu-end" th:each="schoolClass : ${schoolClasses}" >
-              <li><a class="dropdown-item" href="#"></a>1A</li>
-              <li><a class="dropdown-item" href="#" ></a>2A</li>
-              <li><a class="dropdown-item" href="#">5A</a></li>
-            </ul>
-          </div>
 
-
-
-
-
+      
+        <form>
+            <fieldset >
+              <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Add a Student</label>
+                <select name="section" id="disabledSelect" class="form-select">
+                  <option th:each="schoolClass : ${schoolClasses}"
+                   th:text="${schoolClass.section}" 
+                    th:value="${schoolClass.section}">
+                  </option>
+                </select>
+              </div>
+            </fieldset>
+          </form>
+        </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <!-- TO DO ADD A BUTTON -->
 
  
 

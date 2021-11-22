@@ -10,6 +10,7 @@ import it.ntt.myschool.repository.SchoolClassRepository;
 import it.ntt.myschool.repository.StudentRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -47,7 +48,8 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(Student student) {
+    public String addStudent(Student student, @RequestParam String section) {
+        student.setSchoolClass(schoolClassRepository.findschoolClassBySection(section));
     //lo prende dal form della pag AddStudent.html <input name="name" type="text" class="form-control" aria-describedby="namelHelp">
         studentRepository.save(student);
         return "redirect:/students";
